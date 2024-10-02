@@ -1,0 +1,27 @@
+https://aws.amazon.com/blogs/security/how-to-enable-your-users-to-access-office-365-with-aws-microsoft-active-directory-credentials/
+
+Create a Directory service, join Windows server with the directory domain. Install ADFS, DNS mgmt, AD services. Create service account adfssvc and provide full admin access in AD and also add the adfssvc service account in windows server administrator as well. Create new guid with the below command.
+
+(New-Guid).Guid
+
+52710c4f-f1d9-4a1b-91f6-693706fb2512 ##guid generated##
+
+New-ADObject -Name "ADFS" -Type Container -Path "OU=sumantest,DC=sumantest,DC=nonprod,DC=fav,DC=bhola,DC=com"
+
+New-ADObject -Name "52710c4f-f1d9-4a1b-91f6-693706fb2512" -Type Container -Path "CN=ADFS,OU=sumantest,DC=sumantest,DC=nonprod,DC=fav,DC=bhola,DC=com"
+
+bancs.sumantest.nonprod.fav.bhola.com ##name I choose##
+
+install-windowsfeature adfs-federation
+
+$adminConfig = @{"DKMContainerDn"="CN=52710c4f-f1d9-4a1b-91f6-693706fb2512,CN=ADFS,OU=sumantest,DC=sumantest,DC=nonprod,DC=fav,DC=bhola,DC=com"}
+
+$svcCred = (get-credential) ##sumantest/adfssvc service account and password Welcome=1234567##
+
+$localAdminCred = (get-credential)
+
+admin and password ##admin account created by directory service and password C##
+
+f9b20471fa825543e28ebc50a35c283dc71ced65 ##pfx certificate thumbprint FQDN password Welcome=123456789##
+
+Install-ADFSFarm -CertificateThumbprint f9b20471fa825543e28ebc50a35c283dc71ced65 -FederationServiceName "bancs.sumantest.nonprod.fav.bhola.com" -ServiceAccountCredential $svcCred -Credential $localAdminCred -OverwriteConfiguration -AdminConfiguration $adminConfig -SigningCertificateThumbprint f9b20471fa825543e28ebc50a35c283dc71ced65 -DecryptionCertificateThumbprint f9b20471fa825543e28ebc50a35c283dc71ced65
