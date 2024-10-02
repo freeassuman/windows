@@ -1,0 +1,1 @@
+Set-ADDefaultDomainPasswordPolicy -Identity abcd.yourawsdomain.co.uk -LockoutDuration 00:30:00 -LockoutObservationWindow 00:30:00 -LockoutThreshold 3 -ComplexityEnabled $True -ReversibleEncryptionEnabled $False -MaxPasswordAge 10.00:00:00 -MinPasswordLength 14
