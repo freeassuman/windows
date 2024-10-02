@@ -1,0 +1,7 @@
+Run below from command prompt to get the AD extract:
+
+csvde -f C:\test_data.csv
+
+Run below from PowerShell ISE(x86):
+
+Send-MailMessage -From "Suman Das <Suman.Das@suman.com>" -Subject "Nov_prc" -To "Bhola Das <Bhola.Das@suman.com>" -Attachments "C:\test_data.csv" -SmtpServer 10.10.10.10 -Port 25
