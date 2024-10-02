@@ -1,0 +1,8 @@
+___________________to set proxy in windows user via registry___________________________________________________
+HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings registry subkey.
+ProxyEnable =1 (to enable), ProxyServer (proxy IP and port), ProxyOverride (exceptions)
+
+___________________to reflect proxy in all windows terminal server user account________________________________
+HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings
+ProxySettingsPerUser (REG_DWORD)
+enabled value= 0 disabled value=1
