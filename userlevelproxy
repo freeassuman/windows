@@ -6,3 +6,24 @@ ___________________to reflect proxy in all windows terminal server user account_
 HKLM\Software\Policies\Microsoft\Windows\CurrentVersion\Internet Settings
 ProxySettingsPerUser (REG_DWORD)
 enabled value= 0 disabled value=1
+
+_______________susClientID delete_____
+
+REG DELETE "HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\WindowsUpdate" /v SusClientID /f
+___
+To add serIP and registry:
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate]
+"WUServer"="http://xx.xx.xx.xx:8530"
+"WUStatusServer"="http://xx.xx.xx.xx:8530"
+
+[HKEY_LOCAL_MACHINE\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU]
+"NoAUShutdownOption"=dword:00000001
+"DetectionFrequencyEnabled"=dword:00000001
+"DetectionFrequency"=dword:00000002
+"NoAutoRebootWithLoggedOnUsers"=dword:00000001
+"UseWUServer"=dword:00000001
+"NoAutoUpdate"=dword:00000000
+"AUOptions"=dword:00000003
+"ScheduledInstallDay"=dword:00000000
+"ScheduledInstallTime"=dword:0000003
