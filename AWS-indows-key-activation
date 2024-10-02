@@ -1,4 +1,0 @@
-PS C:>Import-Module "C:\\ProgramData\\Amazon\\EC2-Windows\\Launch\\Module\\Ec2Launch.psd1"
-PS C:>Add-Routes
-PS C:>Set-ActivationSettings
-PS C:>slmgr /ato
